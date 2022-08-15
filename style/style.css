@@ -1,4 +1,8 @@
 /* Common */
+:root {
+  --seven-segment-font: "Segment7Standard", serif;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,4 +10,39 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Calculator */
+.calculator {
+  display: block;
+  width: 400px;
+  margin: 5em auto 0;
+  border: 2px solid black;
+}
+
+/* Display */
+.display {
+  font-family: var(--seven-segment-font);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 3em;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+}
+
+.number-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.operation-buttons {
+  display: flex;
+  flex-direction: column;
+}
+.button {
+  width: 90px;
+  height: 90px;
 }
