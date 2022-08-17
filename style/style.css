@@ -17,15 +17,18 @@ body {
   display: block;
   width: max-content;
   margin: 5em auto 0;
-  border: 2px solid black;
+  border: 6px solid black;
 }
 
 /* Display */
 .display {
+  background-color: #9bbc0f;
   font-family: var(--seven-segment-font);
-  text-align: center;
-  padding: 20px 0;
-  font-size: 3em;
+  text-align: right;
+  padding: 20px 10px;
+  font-size: 4em;
+  font-weight: bold;
+  border: 6px solid black;
 }
 
 /* Buttons */
@@ -39,5 +42,18 @@ body {
   height: 90px;
   font-size: 2em;
   font-weight: 100;
-  border: none;
+  border: 6px solid black;
+  --button-hover: #aaa;
+}
+
+.number-button {
+  background-color: #00f5;
+  --button-hover: #bbb;
+}
+
+.operation-button {
+  background-color: #00f3;
+}
+.button:hover {
+  background-color: var(--button-hover);
 }
