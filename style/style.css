@@ -15,7 +15,7 @@ body {
 /* Calculator */
 .calculator {
   display: block;
-  width: 400px;
+  width: max-content;
   margin: 5em auto 0;
   border: 2px solid black;
 }
@@ -30,19 +30,13 @@ body {
 
 /* Buttons */
 .buttons {
-  display: flex;
-}
-
-.number-buttons {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
-.operation-buttons {
-  display: flex;
-  flex-direction: column;
-}
 .button {
   width: 90px;
   height: 90px;
+  font-size: 2em;
+  font-weight: 100;
 }
