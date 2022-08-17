@@ -1,3 +1,7 @@
+const numberButtons = document.querySelectorAll(".number-button");
+const operatorButtons = document.querySelectorAll(".operator-button");
+const displayEl = document.querySelector(".display");
+
 // Math functions
 function add(a, b) {
   return a + b;
