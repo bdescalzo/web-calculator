@@ -67,3 +67,7 @@ body {
 .button:hover {
   background-color: var(--button-hover);
 }
+
+.operation-button--active {
+  background-color: #0059;
+}

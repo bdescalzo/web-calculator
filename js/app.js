@@ -2,6 +2,7 @@
 const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operation-button");
 const displayEl = document.querySelector(".display");
+const equalButton = document.getElementById("=");
 const clear = document.getElementById("clear");
 
 // The number showing on screen
@@ -13,7 +14,10 @@ let result = 0;
 
 let currentOperator = "+";
 
-// Each number button should change the number currently being used and force the display to update
+equalButton.addEventListener("click", () => {
+  lastNumber = doCalculation();
+  displayResult();
+});
 numberButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     currentNumber = parseInt(`${currentNumber}${e.target.value}`);
@@ -23,10 +27,9 @@ numberButtons.forEach((button) => {
 
 operatorButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    console.log("click");
     lastNumber = doCalculation();
-    currentNumber = 0;
-    displayEl.textContent = lastNumber;
+
+    displayResult();
     updateOperator(e.target.value);
   });
 });
@@ -39,8 +42,15 @@ function updateDisplay() {
 // Update the current operator, and move the current number to the 'buffer'
 function updateOperator(operator) {
   currentOperator = operator;
+  operatorButtons.forEach((button) => {
+    button.classList.remove("operation-button--active");
+    if (button.value === operator) {
+      button.classList.add("operation-button--active");
+    }
+  });
 }
 
+// Returns the result of doing a calculation with the two stored numbers and the current operator
 function doCalculation() {
   switch (currentOperator) {
     case "+":
@@ -54,6 +64,10 @@ function doCalculation() {
   }
 }
 
+function displayResult() {
+  currentNumber = 0;
+  displayEl.textContent = lastNumber;
+}
 // Math functions
 function add(a, b) {
   return a + b;
@@ -69,7 +83,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
   if (b == 0) {
-    return "STOP RIGHT THERE, YOU LITTLE DONUT!";
+    return "DIVIDING BY 0?!";
   }
   return a / b;
 }
