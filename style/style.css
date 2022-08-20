@@ -59,7 +59,8 @@ body {
   --button-hover: #00f8;
 }
 
-.operation-button {
+.operation-button,
+.up-button {
   background-color: #00f3;
 }
 
