@@ -1,23 +1,57 @@
 // Grab elements from DOM
 const numberButtons = document.querySelectorAll(".number-button");
-const operatorButtons = document.querySelectorAll(".operator-button");
+const operatorButtons = document.querySelectorAll(".operation-button");
 const displayEl = document.querySelector(".display");
+const clear = document.getElementById("clear");
 
-let currentNumber = " ";
+// The number showing on screen
+let lastNumber = 0;
+let currentNumber = 0;
+
+// The last number saved on memory
 let result = 0;
-let currentOperator;
+
+let currentOperator = "+";
 
 // Each number button should change the number currently being used and force the display to update
 numberButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
-    currentNumber += e.target.value;
+    currentNumber = parseInt(`${currentNumber}${e.target.value}`);
     updateDisplay();
   });
 });
 
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    console.log("click");
+    lastNumber = doCalculation();
+    currentNumber = 0;
+    displayEl.textContent = lastNumber;
+    updateOperator(e.target.value);
+  });
+});
+
+// Make the text in the display match the current number
 function updateDisplay() {
-  expression = currentNumber;
-  displayEl.textContent = expression;
+  displayEl.textContent = currentNumber;
+}
+
+// Update the current operator, and move the current number to the 'buffer'
+function updateOperator(operator) {
+  currentOperator = operator;
+}
+
+function doCalculation() {
+  switch (currentOperator) {
+    case "+":
+      return add(lastNumber, currentNumber);
+    case "-":
+      return subtract(lastNumber, currentNumber);
+    case "*":
+      return multiply(lastNumber, currentNumber);
+    case "/":
+      return divide(lastNumber, currentNumber);
+  }
 }
 
 // Math functions
