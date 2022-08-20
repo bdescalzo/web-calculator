@@ -3,7 +3,7 @@ const numberButtons = document.querySelectorAll(".number-button");
 const operatorButtons = document.querySelectorAll(".operation-button");
 const displayEl = document.querySelector(".display");
 const equalButton = document.getElementById("=");
-const clear = document.getElementById("clear");
+const clearButton = document.getElementById("clear");
 
 // The number showing on screen
 let lastNumber = 0;
@@ -17,6 +17,10 @@ let currentOperator = "+";
 equalButton.addEventListener("click", () => {
   lastNumber = doCalculation();
   displayResult();
+});
+
+clearButton.addEventListener("click", () => {
+  resetCalculator();
 });
 numberButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
@@ -67,6 +71,14 @@ function doCalculation() {
 function displayResult() {
   currentNumber = 0;
   displayEl.textContent = lastNumber;
+}
+
+function resetCalculator() {
+  lastNumber = 0;
+  currentNumber = 0;
+  currentOperator = 0;
+  updateDisplay();
+  updateOperator();
 }
 // Math functions
 function add(a, b) {
