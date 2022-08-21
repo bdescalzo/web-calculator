@@ -45,7 +45,7 @@ function updateDisplay() {
 
 // Update the current operator, and move the current number to the 'buffer'
 function updateOperator(operator) {
-  currentOperator = operator;
+  if (operator !== undefined) currentOperator = operator;
   operatorButtons.forEach((button) => {
     button.classList.remove("operation-button--active");
     if (button.value === operator) {
@@ -65,6 +65,8 @@ function doCalculation() {
       return multiply(lastNumber, currentNumber);
     case "/":
       return divide(lastNumber, currentNumber);
+    default:
+      return currentOperator;
   }
 }
 
@@ -76,7 +78,7 @@ function displayResult() {
 function resetCalculator() {
   lastNumber = 0;
   currentNumber = 0;
-  currentOperator = 0;
+  currentOperator = "+";
   updateDisplay();
   updateOperator();
 }
